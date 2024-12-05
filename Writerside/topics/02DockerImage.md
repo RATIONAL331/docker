@@ -48,7 +48,7 @@ EXPOSE 80
 CMD ["node", "server.js"]
 ```
 ## Docker Build & Run
-```console
+```docker
 # 명시된 dir에서 Dockerfile을 찾아 빌드
 docker build . 
 
@@ -80,3 +80,29 @@ CONTAINER ID   IMAGE          COMMAND                   CREATED         STATUS  
 * 해당 명령 수행 후 localhost:3000 접속 가능
 
 ## Image
+![Container Image Layer](imageLayer.png)
+* Dockerfile에 작성한 각각의 문장은 레이어 기반으로 동작
+* 만약 실행한 문장을 캐싱할 수 있다면 도커는 이를 감지할 수 있음
+
+```docker
+FROM node 
+
+WORKDIR /app
+
+# 해당 문장을 먼저 실행하여
+# 패키지가 변경된 경우에만 npm install을 수행하게끔 변경
+COPY package.json /app
+
+# COPY . /app => 해당 문장을 npm install 뒤로 미루기
+# 만약 server.js가 변경되면 아래 문장은 항상 수행 됨
+# 다시 말해 RUN npm install과 같은 무거운 작업이 항상 실행됨
+RUN npm install 
+
+# npm install은 이제 package.json이 변경된 경우메만 실행됨
+# server.js가 변경되면 아래 문장 수행
+COPY . /app
+
+EXPOSE 80
+
+CMD ["node", "server.js"]
+```
