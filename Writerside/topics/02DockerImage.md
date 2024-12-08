@@ -140,8 +140,9 @@ CMD ["node", "server.js"]
 ```
 
 ### Image Tag
-* name:tag 로 이루어짐
-* 일반적으로 tag는 버전 정보를 의미
+* groupName:version 로 이루어짐
+* `docker build -t groupname:latest .` 로 지정 가능
+* `docker tag {oldName} {newName}`로 기존 태그를 가지는 이미지로 새로운 태그명으로 복사본을 생성 가능
 
 ## Docker Hub Image
 * Hub에 올리려는 이미지의 태그명을 같은 Hub Repo와 같은 이름으로 지정
@@ -162,7 +163,7 @@ docker push rational331/helloserver-docker
 docker pull rational331/helloserver-docker
 ```
 
-### Update & RUn
+### Update & Run
 * 이미지를 `docker run`으로 수행할 때 이미지가 로컬에 존재하면 해당 로컬 이미지를 먼저 사용
   * 없다면 Hub에서 이미지를 찾아 `pull`
 * 만약 업데이트 되었는지 확인하려면 `docker pull`로 확인해야함
