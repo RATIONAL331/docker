@@ -10,12 +10,41 @@
 * `docker run`
   * 이미지를 기반으로 실행 인스턴스 생성
   * 즉 이미지를 기반으로 컨테이너 생성
+  * Attached 모드로 수행(foreground)
+    * -d 옵션을 활용하여 Detached(background)로 수행가능
+  * --rm을 추가하면 해당 컨테이너가 중지될 때 자동으로 컨테이너가 삭제됨
+  * --name을 추가하면 컨테이너의 이름을 지정할 수 있음
 * `docker run node`
   * docker hub에서 node 이미지를 찾아 실행
 * `docker run -it node` (interactive)
-  * 컨테이너 내부의 interactive terminal 노출
+  * 컨테이너 내부와 interactive 가능
+  * -i는 STDIN을 지속적으로 여는 옵션
+  * -t는 pseudo TTY를 할당(터미널 생성)
 * `docker ps -a`
   * -a 옵션이 없다면 현재 실행중인 프로세스만 표시
+* `docker start`
+  * Detached 모드로 수행
+  * -a 옵션을 활용하면 Attached(foreground)로 수행
+    * -i 옵션을 추가하면 interactive 가능
+* `docker attach`
+  * Detached 된 컨테이너에 터미널 연결
+* `docker stop`
+  * 실행중인 컨테이너 중지
+* `docker logs`
+  * 해당 컨테이너에 출력된 로그 확인
+  * -f 옵션을 활용하면 지속 수신 모드로 진입
+* `docker rm`
+  * 컨테이너 삭제
+  * 컨테이너를 삭제하기 위해서는 컨테이너가 중지된 상태여야 함
+* `docker rmi`
+  * 이미지 삭제
+  * 이미지를 삭제하기 위해서는 해당 이미지가 컨테이너에서 사용중이면 안됨(정지되어 있더라도)
+* `docker cp {from} {to}`
+  * 컨테이너에 로컬 파일 및 폴더를 복사하거나 로컬에 컨테이너가 가진 파일 및 폴더를 복사
+  * `docker cp {localDir}/. {container_name}:{toDir}`
+    * 로컬의 localDir 안의 전체 파일 내용을 지정한 컨테이너의 디렉토리에 복사
+  * `docker cp {container_name}:{fromDir/fromFile} {localDir}`
+    * 컨테이너 디렉토리 또는 파일의 내용을 로컬의 localDir 로 복사
 
 ## Dockerfile
 
@@ -51,6 +80,9 @@ CMD ["node", "server.js"]
 ```docker
 # 명시된 dir에서 Dockerfile을 찾아 빌드
 docker build . 
+
+# 빌드 시 태그 명을 지정할 수 있음
+# docker build -t groupname:latest .
 
 # 수행 (아직 정상 수행 X)
 docker run IMAGE_ID
@@ -106,3 +138,31 @@ EXPOSE 80
 
 CMD ["node", "server.js"]
 ```
+
+### Image Tag
+* name:tag 로 이루어짐
+* 일반적으로 tag는 버전 정보를 의미
+
+## Docker Hub Image
+* Hub에 올리려는 이미지의 태그명을 같은 Hub Repo와 같은 이름으로 지정
+* Hub에서 받으려면 Hub Repo명으로 Pull
+
+```Console
+# docker tag는 기존에 oldName 가지는 이미지를 newName으로 새롭게 이미지 생성(복사)
+# docker tag {oldName} {newName}
+docker tag rational331:latest rational331/helloserver-docker:latest
+
+# push 도중에 에러 발생시 로그인 확인
+docker login
+
+# docker push {repoName(:version)}
+docker push rational331/helloserver-docker
+
+# docker pull {repoName(:version)}
+docker pull rational331/helloserver-docker
+```
+
+### Update & RUn
+* 이미지를 `docker run`으로 수행할 때 이미지가 로컬에 존재하면 해당 로컬 이미지를 먼저 사용
+  * 없다면 Hub에서 이미지를 찾아 `pull`
+* 만약 업데이트 되었는지 확인하려면 `docker pull`로 확인해야함
