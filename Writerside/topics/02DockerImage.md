@@ -77,7 +77,7 @@ EXPOSE 80
 CMD ["node", "server.js"]
 ```
 ## Docker Build & Run
-```docker
+```Console
 # 명시된 dir에서 Dockerfile을 찾아 빌드
 docker build . 
 
