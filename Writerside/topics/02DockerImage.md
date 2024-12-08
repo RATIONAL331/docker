@@ -125,12 +125,12 @@ WORKDIR /app
 # 패키지가 변경된 경우에만 npm install을 수행하게끔 변경
 COPY package.json /app
 
-# COPY . /app => 해당 문장을 npm install 뒤로 미루기
-# 만약 server.js가 변경되면 아래 문장은 항상 수행 됨
+# COPY . /app => 해당 문장을 npm install 뒤로 미뤄서 무거운 작업을 막기
+# 뒤로 미루지 않는다면 server.js가 변경되면 아래 문장은 항상 수행 됨
 # 다시 말해 RUN npm install과 같은 무거운 작업이 항상 실행됨
 RUN npm install 
 
-# npm install은 이제 package.json이 변경된 경우메만 실행됨
+# 이제 npm install은 이제 package.json이 변경된 경우메만 실행됨
 # server.js가 변경되면 아래 문장 수행
 COPY . /app
 
