@@ -111,6 +111,32 @@ NAME=TEST
 ```
 
 ### ARG
+```Docker
+FROM node:14
+
+# ARG key=value
+ARG DEFAULT_PORT=80
+ 
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+ENV PORT $DEFAULT_PORT
+
+EXPOSE $PORT
+
+VOLUME ["/app/node_modules"]
+
+CMD [ "npm", "start" ]
+```
+* ARG 명령어로 정의한 변수는 CMD에서 사용할 수 없음
+  * CMD 명령어는 컨테이너가 시작될 때 실행되는 런타임 명령어
+* 빌드 시에 `--build-arg`로 변수를 재지정 할 수 있음
+  * `docker build -t feedback-node:dev -- build-arg DEFAULT_PORT=8000 .`
 
 ### Docker Ignore
 * 프로젝트 폴더에 `.dockerignore` 파일을 생성후 해당 파일 안에 COPY 명령을 통해 복사하면 안되는 폴더 및 파일을 지정 가
