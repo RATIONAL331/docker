@@ -64,7 +64,7 @@ services: # 각 서비스(컨테이너) 대한 레이블 명명
 volumes: # 도커 컴포즈가 인식해야 할 명명된 볼륨명(Named Volume) 작성 
          # 익명 볼륨 및 바인드 마운트는 지정하지 않음
   mongo_data: # 키만 작성하고 값은 작성하지 않아도 됨
-  back_logs:
+  back_logs: # 키만 작성하고 값은 작성하지 않아도 됨
 ```
 
 ## Key Commands
