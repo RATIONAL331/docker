@@ -30,8 +30,8 @@ services: # 각 서비스(컨테이너) 대한 레이블 명명
     # 대부분의 경우에 Compose 파일에 작성된 모든 서비스에 대해서 새 네트워크 환경을 자동으로 설정하여 네트워크 지정 불필요
       #- networkName # 자동 생성된 네트워크 뿐만 아니라 지정한 네트워크에도 추가 가능
   backend:
-    build: ./backend # 빌드 대상이 될 경로 (Dockerfile이 존재하는 경로)
-    #build: # 좀 더 구체적인 형태로 작성 가능 (Dockerfile 이름이 다른 이름으로 된 경우)
+    build: ./backend # 빌드 대상이 될 경로 (Dockerfile 파일이 존재하는 경로)
+    #build: # 좀 더 구체적인 형태로 작성 가능 (Dockerfile 파일 이름이 다른 이름으로 된 경우 등)
       #context: ./backend 
       #dockerfile: Dockerfile
       #args: # Dockerfile ARGument 지정 (key=value 또는 key: value)
