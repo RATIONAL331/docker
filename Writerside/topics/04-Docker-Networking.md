@@ -1,4 +1,4 @@
-# 04. Docker Networking
+# Docker Networking
 ![dockerNetworkBasic.png](dockerNetworkBasic.png)
 
 ## Host Special Domain

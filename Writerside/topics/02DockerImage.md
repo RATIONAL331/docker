@@ -1,4 +1,4 @@
-# 02. Docker Image
+# Docker Image
 
 ## Image & Container
 * 컨테이너는 이미지의 구체적 실행 인스턴스

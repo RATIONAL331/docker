@@ -1,4 +1,4 @@
-# 03. Docker Data &amp; Volume
+# Docker Data &amp; Volume
 
 ![Docker Data Type](dataAndVolume.png)
 
@@ -139,13 +139,14 @@ CMD [ "npm", "start" ]
   * `docker build -t feedback-node:dev -- build-arg DEFAULT_PORT=8000 .`
 
 ### Docker Ignore
-* 프로젝트 폴더에 `.dockerignore` 파일을 생성후 해당 파일 안에 COPY 명령을 통해 복사하면 안되는 폴더 및 파일을 지정 가
+* 프로젝트 폴더에 `.dockerignore` 파일을 생성후 해당 파일 안에 COPY 명령을 통해 복사하면 안되는 폴더 및 파일을 지정
 ```plain text
 Dockerfile
 node_modules
 .git 
 ```
 * npm install 후 호스트에 있는 node_modules 폴더를 COPY 명령어를 통해 복사하지 않음
+  * 다만 node_modules 필요 없는 경우에만 사용 가능 (바운드 마운팅 되어 필요 없는 경우 등)
 
 
 
