@@ -12,6 +12,7 @@
         <toc-element topic="03-Docker-Data-Volume.md"/>
         <toc-element topic="04-Docker-Networking.md"/>
         <toc-element topic="05-Docker-Multi-Container.md"/>
+        <toc-element topic="Docker-Utility-Container.md"/>
         <toc-element topic="Docker-Deployment.md"/>
     </toc-element>
     <toc-element topic="Kubernates.md"/>
