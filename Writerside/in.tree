@@ -3,7 +3,7 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="in"
-                 name="Docker &amp; Kubernates Basic"
+                 name="Docker & Kubernetes"
                  start-page="01DockerBasic.md">
 <!--    <toc-element topic="starter.md"/>-->
     <toc-element topic="01DockerBasic.md">
@@ -15,5 +15,10 @@
         <toc-element topic="Docker-Utility-Container.md"/>
         <toc-element topic="Docker-Deployment.md"/>
     </toc-element>
-    <toc-element topic="Kubernates.md"/>
+    <toc-element topic="Kubernates.md">
+        <toc-element topic="Kubernetes-Essential.md"/>
+        <toc-element topic="Kubernetes-Data-Volume.md"/>
+        <toc-element topic="Kubernetes-Networking.md"/>
+        <toc-element topic="Kubernetes-Deployment.md"/>
+    </toc-element>
 </instance-profile>
