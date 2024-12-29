@@ -1,4 +1,4 @@
-# Docker Data &amp; Volume
+# Docker Data & Volume
 
 ![Docker Data Type](dataAndVolume.png)
 
